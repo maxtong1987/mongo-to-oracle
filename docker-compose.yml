@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+    mongo:
+        image: mongo:4.2.3
+        container_name: mongo
+        entrypoint: ["mongod", "--bind_ip_all", "--replSet", "rs0"]
+        volumes:
+            - mongo-data:/data/db
+        ports: 
+            - 27017:27017
+    oracle:
+        image: maxtong1987/oracle-db:19.3.0-se2
+        volumes:
+            - oracle-data:/opt/oracle/oradata
+            # - oracle-startup:opt/oracle/scripts/startup
+            # - oracle-setup:opt/oracle/scripts/setup
+        environment: 
+            ORACLE_PWD: admin123
+        ports:
+            - 1521:1521
+            - 5500:5500
+
+volumes:
+    mongo-data:
+    oracle-data:
