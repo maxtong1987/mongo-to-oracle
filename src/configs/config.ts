@@ -1,8 +1,8 @@
 import { MongoClientOptions } from "mongodb";
 import { ConnectionAttributes } from "oracledb";
+import { ICsvInserterConfig } from "../csv/csv-inserter";
 import { ILogConfig } from "../loggers/logger";
 import { ISynchronizerConfig } from "../synchronizer";
-import { ICsvInserterConfig } from "../csv/csv-inserter";
 
 export interface IMongoConfig {
     url: string;
@@ -16,7 +16,6 @@ export interface IConfig {
     synchronizer?: ISynchronizerConfig;
     csvInserter?: ICsvInserterConfig;
 }
-
 
 export const defaultConfig: IConfig = {
     oracle: {

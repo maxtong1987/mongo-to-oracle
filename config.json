@@ -1,0 +1,75 @@
+{
+    "oracle": {
+        "connectString": "192.168.1.195:1521/ORCLPDB1",
+        "password": "demo",
+        "user": "DEMO"
+    },
+    "mongo": {
+        "url": "mongodb://192.168.1.195:27017/?readPreference=secondary",
+        "options": {
+            "useNewUrlParser": true
+        }
+    },
+    "log": {
+        "level": "debug",
+        "files": [{
+                "filename": "mongo-to-oracle-%DATE%.log",
+                "datePattern": "YYYY-MM-DD",
+                "maxSize": "100m",
+                "maxFiles": "3m"
+            },
+            {
+                "filename": "mongo-to-oracle-%DATE%.attention.log",
+                "datePattern": "YYYY-MM-DD",
+                "maxSize": "100m",
+                "maxFiles": "3m",
+                "level": "warn"
+            }
+        ]
+    },
+    "synchronizer": {
+        "db": "demo",
+        "defaultOptions": {
+            "isSyncOnStart": true,
+            "isSyncInRealTime": true
+        },
+        "mongo->oracle": [{
+                "table": "students->STUDENTS",
+                "keys": [
+                    "_id->STUDENT_ID"
+                ],
+                "columns": [
+                    "name->NAME"
+                ]
+            },
+            {
+                "table": "teachers->TEACHERS",
+                "keys": [
+                    "_id->TEACHER_ID"
+                ],
+                "columns": [
+                    "name->NAME"
+                ]
+            },
+            {
+                "table": "cars->CARS",
+                "keys": [
+                    "_id->CAR_ID"
+                ],
+                "columns": [
+                    "name->NAME"
+                ],
+                "embeddedColumns": [{
+                    "table": "wheels->WHEELS",
+                    "keys": [
+                        "../_id->CAR_ID",
+                        "_id->WHEEL_ID"
+                    ],
+                    "columns": [
+                        "name->NAME"
+                    ]
+                }]
+            }
+        ]
+    }
+}

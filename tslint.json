@@ -1,21 +1,22 @@
 {
-  "defaultSeverity": "error",
-  "extends": [
-    "tslint:recommended"
-  ],
-  "jsRules": {},
-  "rules": {
-    "no-console": false,
-    "variable-name": [
-      true,
-      "ban-keywords",
-      "check-format",
-      "allow-leading-underscore"
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
     ],
-    "interface-name": [
-      true,
-      "never-prefix"
-    ]
-  },
-  "rulesDirectory": []
+    "jsRules": {},
+    "rules": {
+        "no-console": false,
+        "variable-name": [
+            true,
+            "ban-keywords",
+            "check-format",
+            "allow-leading-underscore"
+        ],
+        "interface-name": [
+            true,
+            "never-prefix"
+        ],
+        "interface-name": false
+    },
+    "rulesDirectory": []
 }
